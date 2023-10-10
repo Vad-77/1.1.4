@@ -2,10 +2,10 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 public class UserDaoJDBCImpl implements UserDao {
@@ -14,6 +14,8 @@ public class UserDaoJDBCImpl implements UserDao {
     public UserDaoJDBCImpl() {
         connection = Util.getConnection();
     }
+
+    private static final Logger logger = Logger.getLogger(UserDaoJDBCImpl.class.getName());
 
     public void createUsersTable() {
         String sql = " CREATE TABLE users (id integer primary key AUTO_INCREMENT, name varchar(50), lastname varchar(50), age integer)";
@@ -27,7 +29,7 @@ public class UserDaoJDBCImpl implements UserDao {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            System.out.println(e.getMessage());
+            logger.severe(e.getMessage());
         }
     }
 
@@ -43,7 +45,7 @@ public class UserDaoJDBCImpl implements UserDao {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            System.out.println(e.getMessage());
+            logger.severe(e.getMessage());
         }
     }
 
@@ -62,7 +64,7 @@ public class UserDaoJDBCImpl implements UserDao {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            System.out.println(e.getMessage());
+            logger.severe(e.getMessage());
         }
     }
 
@@ -79,16 +81,16 @@ public class UserDaoJDBCImpl implements UserDao {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            System.out.println(e.getMessage());
+            logger.severe(e.getMessage());
         }
     }
 
     public List<User> getAllUsers() {
         List<User> list = new ArrayList<>();
-        String SQL = "SELECT id, name, lastname, age FROM users";
+        String sql = "SELECT id, name, lastname, age FROM users";
         try (Statement statement = connection.createStatement()) {
             connection.setAutoCommit(false);
-            ResultSet resultSet = statement.executeQuery(SQL);
+            ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 User us = new User();
                 us.setId(resultSet.getLong("id"));
@@ -104,7 +106,7 @@ public class UserDaoJDBCImpl implements UserDao {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            System.out.println(e.getMessage());
+            logger.severe(e.getMessage());
         }
         return list;
     }
@@ -122,7 +124,7 @@ public class UserDaoJDBCImpl implements UserDao {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            System.out.println(e.getMessage());
+            logger.severe(e.getMessage());
         }
     }
 

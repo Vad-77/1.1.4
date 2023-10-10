@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Util {
     // реализуйте настройку соеденения с БД
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost/vvv";
+    private static final String DB_URL = "jdbc:mysql://localhost/jdbc";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "Kata2023!!";
     public static Connection getConnection() {
